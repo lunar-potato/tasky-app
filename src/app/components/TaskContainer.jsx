@@ -1,20 +1,26 @@
 import React from "react";
 import { MoreVertical } from "lucide-react";
 
-const TaskContainer = () => {
+// Default Placeholder tasks
+const tasks = [{ title: "To Do" }, { title: "Doing" }, { title: "Done" }];
+
+const TaskContainer = ({ title }) => {
   return (
-    <div className="p-10">
-      <div className="flex justify-between max-w-sm overflow-hidden rounded shadow-lg bg-slate-400">
-        <div className="grid grid-cols-4 gap-5 my-5">
-          <div>
-            <h4 className="flex items-center justify-between">To do:
-            <MoreVertical className=""></MoreVertical>
-            </h4>
-          </div>
-        </div>
-      </div>
+    <div className="flex justify-between p-4 m-4 rounded shadow-lg bg-slate-500">
+      <h4 className="text-4xl font-bold">{title}</h4>
+      <MoreVertical className="p-1 w-9 h-9" />
     </div>
   );
 };
 
-export default TaskContainer;
+const Container = () => {
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      {tasks.map((task, index) => (
+        <TaskContainer key={index} title={task.title} />
+      ))}
+    </div>
+  );
+};
+
+export default Container;
