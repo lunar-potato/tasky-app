@@ -20,7 +20,7 @@ const TaskContainer = ({ title }) => {
         <TaskCard tasks={taskData} />
       </div>
       <div>
-        <button className="flex items-start font-bold">+ Add Card</button>
+        <button className="flex items-start font-bold hover:text-white">+ Add Card</button>
       </div>
     </div>
   );
