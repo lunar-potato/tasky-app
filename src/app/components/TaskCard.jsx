@@ -11,39 +11,7 @@ const TaskCard = () => {
       date: "2023-11-02",
       status: "To Do",
     },
-    {
-      id: 2,
-      projectName: "Project 2",
-      description: "Short description 2",
-      assignedTo: "Alice",
-      date: "2023-11-03",
-      status: "To Do",
-    },
-    {
-      id: 3,
-      projectName: "Project 3",
-      description: "Short description 3",
-      assignedTo: "Bob",
-      date: "2023-11-04",
-      status: "in-progress",
-    },
-    {
-      id: 4,
-      projectName: "Project 4",
-      description: "Short description 4",
-      assignedTo: "Eve",
-      date: "2023-11-05",
-      status: "done",
-    },
-    {
-      id: 5,
-      projectName: "Project 5",
-      description: "Short description 5",
-      assignedTo: "Alice",
-      date: "2023-11-06",
-      status: "done",
-    },
-  ];
+  ]
 
   return (
     <ul>

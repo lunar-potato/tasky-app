@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -58,20 +59,20 @@ const AddTask = () => {
     };
 
     return (
-        <div className="w-full max-w-md mx-auto p-4">
+        <div className="w-full max-w-md p-4 mx-auto">
             <form
                 onSubmit={handleSubmit}
-                className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md"
             >
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">
                         Project Type
                     </label>
                     <select
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleChange}
-                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                     >
                         <option value="" disabled>
                             Click to Select an Option
@@ -83,14 +84,14 @@ const AddTask = () => {
 
                 {formData.projectType === "existing" ? (
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block mb-2 text-sm font-bold text-gray-700">
                             Project Name
                         </label>
                         <select
                             name="projectName"
                             value={formData.projectName}
                             onChange={handleChange}
-                            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                         >
                             {projectNames.map((name) => (
                                 <option key={name} value={name}>
@@ -101,7 +102,7 @@ const AddTask = () => {
                     </div>
                 ) : (
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block mb-2 text-sm font-bold text-gray-700">
                             New Project Name
                         </label>
                         <input
@@ -109,20 +110,20 @@ const AddTask = () => {
                             name="newProjectName"
                             value={formData.newProjectName}
                             onChange={handleChange}
-                            className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-500"
                         />
                     </div>
                 )}
 
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">
                         Task Type
                     </label>
                     <select
                         name="taskType"
                         value={formData.taskType}
                         onChange={handleChange}
-                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                     >
                         {taskTypes.map((type) => (
                             <option key={type.id} value={type.id}>
@@ -133,7 +134,7 @@ const AddTask = () => {
                 </div>
                 {/* comment or description section */}
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">
                         Comment/Description of Task
                     </label>
                     <textarea
@@ -141,13 +142,13 @@ const AddTask = () => {
                         value={formData.comment}
                         onChange={handleChange}
                         rows="4"
-                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                         maxLength="300"
                     ></textarea>
                 </div>
                 {/* Assigning task to */}
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">
                         Assigned To
                     </label>
                     {teamMembers.map((member) => (
@@ -158,7 +159,7 @@ const AddTask = () => {
                                 value={member.id}
                                 checked={formData.assignedTo.includes(member.id)}
                                 onChange={handleChange}
-                                className="form-checkbox text-indigo-600 h-5 w-5"
+                                className="w-5 h-5 text-indigo-600 form-checkbox"
                             />
                             <span className="ml-2">{member.name}</span>
                         </label>
@@ -166,14 +167,14 @@ const AddTask = () => {
                 </div>
                 {/* Task urgency */}
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">
                         Level of Priority
                     </label>
                     <select
                         name="taskUrgency"
                         value={formData.taskUrgency}
                         onChange={handleChange}
-                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                     >
                         {urgencyLevels.map((level) => (
                             <option key={level.id} value={level.id}>
@@ -185,7 +186,7 @@ const AddTask = () => {
                 </div>
                 {/* Date option - default creation date */}
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">
                         Creation Date
                     </label>
                     <DatePicker
@@ -195,12 +196,12 @@ const AddTask = () => {
                         }
                         dateFormat="dd/MM/yyyy"
                         disabled
-                        className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-500"
                     />
                 </div>
                 {/* Due date of task - using date picker */}
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700">
                         Due Date
                     </label>
                     <DatePicker
@@ -209,25 +210,25 @@ const AddTask = () => {
                         dateFormat="dd/MM/yyyy"
                         isClearable
                         placeholderText="Select a date"
-                        className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-500"
                     />
                 </div>
                 {/* progress bar depending on the 4 options */}
                 <div className="mb-4">
-                    <div className="text-sm font-bold mb-2">
+                    <div className="mb-2 text-sm font-bold">
                         Progress ({formData.taskType * 25}%)
                     </div>
-                    <div className="bg-gray-300 h-6 rounded-full">
+                    <div className="h-6 bg-gray-300 rounded-full">
                         <div
                             style={{ width: `${formData.taskType * 25}%` }}
-                            className="bg-blue-500 h-full rounded-full"
+                            className="h-full bg-blue-500 rounded-full"
                         ></div>
                     </div>
                 </div>
                 {/* submit button */}
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                 >
                     Add Task
                 </button>
