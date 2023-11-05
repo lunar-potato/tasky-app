@@ -1,10 +1,8 @@
 "use client";
-
 import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
 import TaskContainer from "./components/TaskContainer";
-import TaskCard from "./components/TaskCard";
 import NavbarProject from "./components/NavbarProject";
 import AddTask from "./components/AddTask"; // Importing the AddTask component
 
