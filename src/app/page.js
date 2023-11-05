@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
@@ -11,7 +13,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       <Navbar />
       <NavbarProject />
-      <div className="container px-12 py-4 mx-auto mt-24">
+      <div className="container px-12 py-4 mx-auto mt-6">
         <TaskContainer />
         <AddTask /> {/* Temporarily adding the AddTask component here */}
         <Footer />

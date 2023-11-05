@@ -9,25 +9,31 @@ const NavbarProject = ({ projectName }) => {
   ];
 
   return (
-    <div className="bg-blue-500 py-4 px-6 flex justify-between items-center">
-      <button className="bg-transparent border border-white rounded p-1 text-white text-sm">
-        Back to Projects
-      </button>
-      <h1 className="text-white text-lg flex items-center">
-        Project Name{" "}
+    <div>
+      <div className="container flex flex-col items-center justify-between px-16 py-4 mx-auto md:flex-row">
+        <h1 className="flex py-3 text-4xl font-bold text-black">
+          Project Name{" "}
+        </h1>
         {/* placeholder for Project name */}
-        {assignedTo.map((member) => (
-          <div key={member.id} className="bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center text-black font-bold ml-2">
-            {member.initials}
+        <div className="flex items-center justify-center">
+          {assignedTo.map((member) => (
+              <div key={member.id} className="flex items-center justify-center w-10 h-10 mx-1 font-bold text-black bg-orange-200 rounded-full">
+                {member.initials}
+              </div>
+            ))}
+          <div className="flex items-center">
+            <button className="px-4 py-2 ml-1 mr-4 text-white rounded-full bg-sky-500 hover:bg-sky-400">+ INVITE</button>
+            <button className="text-2xl text-black">...</button>
           </div>
-        ))}
-      </h1>
-      <div className="flex items-center">
-        <button className="bg-green-500 text-white px-4 py-2 rounded-full mr-4">+ INVITE</button>
-        <button className="text-white text-2xl">...</button>
+        </div>
+      </div>
+      <div className="container flex justify-center px-16 py-2 mx-auto md:justify-start">
+        <button className="px-3 py-1 text-sm text-white bg-teal-500 rounded hover:bg-teal-400">
+      Back to Projects
+      </button>
       </div>
     </div>
-  );
+  )
 };
 
 export default NavbarProject;
