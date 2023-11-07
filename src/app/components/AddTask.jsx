@@ -5,29 +5,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const AddTask = () => {
     const [formData, setFormData] = useState({
-        projectType: "", //
-        projectName: "",
+        taskTitle: "",
+        taskCategory: "",
         taskType: "1",
-        comment: "",
-        assignedTo: [],
+        notes: "",
         creationDate: new Date(),
         dueDate: null,
         taskUrgency: "high",
     });
-
-    const taskTypes = [
-        { id: "1", name: "Discussion on Web Design and Wireframe", progress: 25 },
-        { id: "2", name: "Building and Coding", progress: 50 },
-        { id: "3", name: "Testing App and Customer Review", progress: 75 },
-        { id: "4", name: "Deployment of App", progress: 100 },
-    ];
-
-    const teamMembers = [
-        { id: "tammy", name: "Tammy H" },
-        { id: "jess", name: "Jess R" },
-        { id: "gwyneth", name: "Gwyneth B" },
-        { id: "memouna", name: "Memouna I" },
-    ];
 
     const urgencyLevels = [
         { id: "high", label: "High", colorClass: "bg-red" },
@@ -36,8 +21,8 @@ const AddTask = () => {
         { id: "lowest", label: "Lowest", colorClass: "bg-green" },
     ];
 
-    //   project type, choosing existing or new project
-    const projectNames = ["Project 1", "Project 2", "Project 3"];
+    // choose existing or new category
+    const taskCategory = ["Errands", "Home", "Work"];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -47,11 +32,11 @@ const AddTask = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === "projectType") {
+        if (name === "taskCategory") {
             if (value === "new") {
-                setFormData({ ...formData, projectType: "new", projectName: "" });
+                setFormData({ ...formData, taskCategory: "new", taskCategory: "" });
             } else {
-                setFormData({ ...formData, projectType: "existing" });
+                setFormData({ ...formData, taskCategory: "existing" });
             }
         } else {
             setFormData({ ...formData, [name]: value });
@@ -65,32 +50,32 @@ const AddTask = () => {
                 className="px-8 pt-6 pb-8 mb-4 rounded shadow-sm bg-sky-100">
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-bold">
-                        Project Type
+                        Task Category
                     </label>
                     <select
-                        name="projectType"
-                        value={formData.projectType}
+                        name="taskCategory"
+                        value={formData.taskCategory}
                         onChange={handleChange}
                         className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
                         <option value="" disabled>
                             Click to Select an Option
                         </option>
-                        <option value="existing">Choose Existing Project</option>
-                        <option value="new">Create New Project</option>
+                        <option value="existing">Choose Existing Category</option>
+                        <option value="new">Create New Category</option>
                     </select>
                 </div>
 
-                {formData.projectType === "existing" ? (
+                {formData.taskCategory === "existing" ? (
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-bold">
-                            Project Name
+                            Task Category
                         </label>
                         <select
-                            name="projectName"
-                            value={formData.projectName}
+                            name="taskCategory"
+                            value={formData.taskCategory}
                             onChange={handleChange}
-                            className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
-                            {projectNames.map((name) => (
+                            className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
+                            {taskCategory.map((name) => (
                                 <option key={name} value={name}>
                                     {name}
                                 </option>
@@ -100,67 +85,43 @@ const AddTask = () => {
                 ) : (
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-bold">
-                            New Project Name
+                            New Category Name
                         </label>
                         <input
                             type="text"
-                            name="newProjectName"
-                            value={formData.newProjectName}
+                            name="newCategoryName"
+                            value={formData.newCategoryName}
                             onChange={handleChange}
                             className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-300" />
                     </div>
                 )}
 
-                <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold">
-                        Task Type
-                    </label>
-                    <select
-                        name="taskType"
-                        value={formData.taskType}
-                        onChange={handleChange}
-                        className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
-                        {taskTypes.map((type) => (
-                            <option key={type.id} value={type.id}>
-                                {type.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
                 {/* comment or description section */}
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-semibold">
-                        Comment/Description of Task
+                    <label className="block mb-2 text-sm font-bold">
+                        Task name
+                    </label>
+                    <input
+                        name="notes"
+                        value={formData.taskTitle}
+                        onChange={handleChange}
+                        className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded focus:outline-none focus:border-gray-300" ></input>
+                </div>
+                <div className="mb-4">
+                    <label className="block mb-2 text-sm font-bold">
+                        Task notes
                     </label>
                     <textarea
-                        name="comment"
-                        value={formData.comment}
+                        name="notes"
+                        value={formData.notes}
                         onChange={handleChange}
                         rows="4"
                         className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300" maxLength="300"></textarea>
                 </div>
-                {/* Assigning task to */}
-                <div className="mb-4">
-                    <label className="block mb-2 text-sm font-semibold">
-                        Assigned To
-                    </label>
-                    {teamMembers.map((member) => (
-                        <label key={member.id} className="inline-flex items-center mr-4">
-                            <input
-                                type="checkbox"
-                                name="assignedTo"
-                                value={member.id}
-                                checked={formData.assignedTo.includes(member.id)}
-                                onChange={handleChange}
-                                className="w-5 h-5 text-white accent-sky-500 form-checkbox" />
-                            <span className="ml-2">{member.name}</span>
-                        </label>
-                    ))}
-                </div>
                 {/* Task urgency */}
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-semibold">
-                        Level of Priority
+                        Priority level
                     </label>
                     <select
                         name="taskUrgency"
@@ -176,18 +137,12 @@ const AddTask = () => {
 
                 </div>
                 {/* Date option - default creation date */}
-                <div className="mb-4">
-                    <label className="block mb-2 text-sm font-semibold">
-                        Creation Date
-                    </label>
-                    <DatePicker
-                        selected={formData.creationDate}
-                        onChange={(date) =>
-                            setFormData({ ...formData, creationDate: date })
-                        }
-                        dateFormat="dd/MM/yyyy"
-                        disabled
-                        className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded focus:outline-none focus:border-gray-300"
+                <div>
+                    <input
+                        type="hidden"
+                        name="creationDate"
+                        value={formData.creationDate}
+                        onChange={handleChange}
                     />
                 </div>
                 {/* Due date of task - using date picker */}
@@ -202,17 +157,6 @@ const AddTask = () => {
                         isClearable
                         placeholderText="Select a date"
                         className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded focus:outline-none focus:border-gray-300" />
-                </div>
-                {/* progress bar depending on the 4 options */}
-                <div className="mb-4">
-                    <div className="mb-2 text-sm font-bold">
-                        Progress ({formData.taskType * 25}%)
-                    </div>
-                    <div className="h-6 bg-gray-300 rounded-full">
-                        <div
-                            style={{ width: `${formData.taskType * 25}%` }}
-                            className="h-full rounded-full bg-sky-500"></div>
-                    </div>
                 </div>
                 {/* submit button */}
                 <button
