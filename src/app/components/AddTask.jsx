@@ -34,15 +34,16 @@ const AddTask = () => {
     const newTask = {
       taskTitle: formData.taskTitle,
       comment: formData.comment,
-      dueDate: formData.dueDate,
+      dueDate: formData.dueDate || null,
     };
 
-    const { data, err } = await supabase.from("tasks").insert([newTask]);
+    const { data, err } = await supabase.from("tasks").insert(newTask).select();
 
     if (err) {
       console.err("Error adding task to Supabase: ", err);
     } else {
       console.log("Task added to Supabase: ", data);
+      console.log("Current Tasks: ", tasks);
       setTasks([...tasks, data[0]]);
       setFormData({ taskTitle: "", comment: "", dueDate: null });
     }
@@ -79,6 +80,7 @@ const AddTask = () => {
             }
           />
         </div>
+        
         <div className="mb-4">
           <label className="block mb-2 text-sm font-semibold">
             Creation Date
@@ -92,6 +94,7 @@ const AddTask = () => {
             className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded focus:outline-none focus:border-gray-300"
           />
         </div>
+        
         <button
           type="submit"
           className="px-4 py-2 font-bold text-white bg-teal-500 rounded hover:bg-teal-400 focus:outline-none focus:shadow-outline"
