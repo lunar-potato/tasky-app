@@ -10,6 +10,7 @@ const AddTask = () => {
     taskTitle: "",
     comment: "",
     dueDate: null,
+    priority: "medium",
   });
 
   const supabaseUrl = "https://vumfiwtseuqdsodbaghp.supabase.co";
@@ -35,6 +36,7 @@ const AddTask = () => {
       taskTitle: formData.taskTitle,
       comment: formData.comment,
       dueDate: formData.dueDate || null,
+      priority: formData.priority,
     };
 
     const { data, err } = await supabase.from("tasks").insert(newTask).select();
@@ -45,7 +47,12 @@ const AddTask = () => {
       console.log("Task added to Supabase: ", data);
       console.log("Current Tasks: ", tasks);
       setTasks([...tasks, data[0]]);
-      setFormData({ taskTitle: "", comment: "", dueDate: null });
+      setFormData({
+        taskTitle: "",
+        comment: "",
+        dueDate: null,
+        priority: "medium",
+      });
     }
   };
 
@@ -80,10 +87,10 @@ const AddTask = () => {
             }
           />
         </div>
-        
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-semibold">
-            Creation Date
+            Due Date
           </label>
           <DatePicker
             selected={formData.dueDate}
@@ -94,7 +101,21 @@ const AddTask = () => {
             className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded focus:outline-none focus:border-gray-300"
           />
         </div>
-        
+        <label className="block mb-2 text-sm font-semibold">
+          Task Priority
+        </label>
+        <select
+          name="priority"
+          value={formData.priority}
+          onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
+          className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300"
+        >
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <div className="mb-4"></div>
+
         <button
           type="submit"
           className="px-4 py-2 font-bold text-white bg-teal-500 rounded hover:bg-teal-400 focus:outline-none focus:shadow-outline"
