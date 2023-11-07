@@ -1,18 +1,34 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TaskCard2 from "./TaskCard"; 
 
 const AddTask = () => {
     const [formData, setFormData] = useState({
-        taskTitle: "",
-        taskCategory: "",
+        projectType: "", //
+        projectName: "",
         taskType: "1",
-        notes: "",
+        comment: "",
+        assignedTo: [],
         creationDate: new Date(),
         dueDate: null,
         taskUrgency: "high",
     });
+
+    const taskTypes = [
+        { id: "1", name: "Discussion on Web Design and Wireframe", progress: 25 },
+        { id: "2", name: "Building and Coding", progress: 50 },
+        { id: "3", name: "Testing App and Customer Review", progress: 75 },
+        { id: "4", name: "Deployment of App", progress: 100 },
+    ];
+
+    const teamMembers = [
+        { id: "tammy", name: "Tammy H" },
+        { id: "jess", name: "Jess R" },
+        { id: "gwyneth", name: "Gwyneth B" },
+        { id: "memouna", name: "Memouna I" },
+    ];
 
     const urgencyLevels = [
         { id: "high", label: "High", colorClass: "bg-red" },
@@ -21,26 +37,55 @@ const AddTask = () => {
         { id: "lowest", label: "Lowest", colorClass: "bg-green" },
     ];
 
-    // choose existing or new category
-    const taskCategory = ["Errands", "Home", "Work"];
-
+    //   project type, choosing existing or new project
+    const projectNames = ["Project 1", "Project 2", "Project 3"];
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
-    };
+        // Creating a new task object with the form data
+        const newTask = {
+          id: Date.now(), // Generate a unique ID
+          taskTitle: formData.projectName, // Using the relevant form field
+          // Setting other properties like taskCategory, notes, dueDate, taskUrgency, etc.
+          status: "To Do", // Setting the status to "To Do"
+        };
+        setTasks([...tasks, newTask]);
+        addTaskToToDoColumn(newTask);
+        saveTaskToLocalStorage(formData);
+        setFormData({
+          projectType: "",
+          projectName: "",
+          taskType: "1",
+          comment: "",
+          assignedTo: [],
+          creationDate: new Date(),
+          dueDate: null,
+          taskUrgency: "high",
+        });
+      };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === "taskCategory") {
+        if (name === "projectType") {
             if (value === "new") {
-                setFormData({ ...formData, taskCategory: "new", taskCategory: "" });
+                setFormData({ ...formData, projectType: "new", projectName: "" });
             } else {
-                setFormData({ ...formData, taskCategory: "existing" });
+                setFormData({ ...formData, projectType: "existing" });
             }
         } else {
             setFormData({ ...formData, [name]: value });
         }
+    };
+
+    const saveTaskToLocalStorage = (taskData) => {
+        const existingTasks = JSON.parse(localStorage.getItem("tasks")) || { "To Do": [] };
+        existingTasks["To Do"].push(taskData);
+        localStorage.setItem("tasks", JSON.stringify(existingTasks));
+    };
+
+    const addTaskToToDoColumn = (taskData) => {
+        // You can add code here to update your application state or perform other actions.
+        // For example, if you are using a state management library, you can dispatch an action to update your state.
     };
 
     return (
@@ -50,32 +95,32 @@ const AddTask = () => {
                 className="px-8 pt-6 pb-8 mb-4 rounded shadow-sm bg-sky-100">
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-bold">
-                        Task Category
+                        Project Type
                     </label>
                     <select
-                        name="taskCategory"
-                        value={formData.taskCategory}
+                        name="projectType"
+                        value={formData.projectType}
                         onChange={handleChange}
                         className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
                         <option value="" disabled>
                             Click to Select an Option
                         </option>
-                        <option value="existing">Choose Existing Category</option>
-                        <option value="new">Create New Category</option>
+                        <option value="existing">Choose Existing Project</option>
+                        <option value="new">Create New Project</option>
                     </select>
                 </div>
 
-                {formData.taskCategory === "existing" ? (
+                {formData.projectType === "existing" ? (
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-bold">
-                            Task Category
+                            Project Name
                         </label>
                         <select
-                            name="taskCategory"
-                            value={formData.taskCategory}
+                            name="projectName"
+                            value={formData.projectName}
                             onChange={handleChange}
-                            className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
-                            {taskCategory.map((name) => (
+                            className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
+                            {projectNames.map((name) => (
                                 <option key={name} value={name}>
                                     {name}
                                 </option>
@@ -85,43 +130,67 @@ const AddTask = () => {
                 ) : (
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-bold">
-                            New Category Name
+                            New Project Name
                         </label>
                         <input
                             type="text"
-                            name="newCategoryName"
-                            value={formData.newCategoryName}
+                            name="newProjectName"
+                            value={formData.newProjectName}
                             onChange={handleChange}
                             className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-300" />
                     </div>
                 )}
 
+                <div className="mb-4">
+                    <label className="block mb-2 text-sm font-bold">
+                        Task Type
+                    </label>
+                    <select
+                        name="taskType"
+                        value={formData.taskType}
+                        onChange={handleChange}
+                        className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300">
+                        {taskTypes.map((type) => (
+                            <option key={type.id} value={type.id}>
+                                {type.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 {/* comment or description section */}
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold">
-                        Task name
-                    </label>
-                    <input
-                        name="notes"
-                        value={formData.taskTitle}
-                        onChange={handleChange}
-                        className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded focus:outline-none focus:border-gray-300" ></input>
-                </div>
-                <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold">
-                        Task notes
+                    <label className="block mb-2 text-sm font-semibold">
+                        Comment/Description of Task
                     </label>
                     <textarea
-                        name="notes"
-                        value={formData.notes}
+                        name="comment"
+                        value={formData.comment}
                         onChange={handleChange}
                         rows="4"
                         className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300" maxLength="300"></textarea>
                 </div>
+                {/* Assigning task to */}
+                <div className="mb-4">
+                    <label className="block mb-2 text-sm font-semibold">
+                        Assigned To
+                    </label>
+                    {teamMembers.map((member) => (
+                        <label key={member.id} className="inline-flex items-center mr-4">
+                            <input
+                                type="checkbox"
+                                name="assignedTo"
+                                value={member.id}
+                                checked={formData.assignedTo.includes(member.id)}
+                                onChange={handleChange}
+                                className="w-5 h-5 text-white accent-sky-500 form-checkbox" />
+                            <span className="ml-2">{member.name}</span>
+                        </label>
+                    ))}
+                </div>
                 {/* Task urgency */}
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-semibold">
-                        Priority level
+                        Level of Priority
                     </label>
                     <select
                         name="taskUrgency"
@@ -137,12 +206,18 @@ const AddTask = () => {
 
                 </div>
                 {/* Date option - default creation date */}
-                <div>
-                    <input
-                        type="hidden"
-                        name="creationDate"
-                        value={formData.creationDate}
-                        onChange={handleChange}
+                <div className="mb-4">
+                    <label className="block mb-2 text-sm font-semibold">
+                        Creation Date
+                    </label>
+                    <DatePicker
+                        selected={formData.creationDate}
+                        onChange={(date) =>
+                            setFormData({ ...formData, creationDate: date })
+                        }
+                        dateFormat="dd/MM/yyyy"
+                        disabled
+                        className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded focus:outline-none focus:border-gray-300"
                     />
                 </div>
                 {/* Due date of task - using date picker */}
@@ -158,6 +233,17 @@ const AddTask = () => {
                         placeholderText="Select a date"
                         className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded focus:outline-none focus:border-gray-300" />
                 </div>
+                {/* progress bar depending on the 4 options */}
+                <div className="mb-4">
+                    <div className="mb-2 text-sm font-bold">
+                        Progress ({formData.taskType * 25}%)
+                    </div>
+                    <div className="h-6 bg-gray-300 rounded-full">
+                        <div
+                            style={{ width: `${formData.taskType * 25}%` }}
+                            className="h-full rounded-full bg-sky-500"></div>
+                    </div>
+                </div>
                 {/* submit button */}
                 <button
                     type="submit"
@@ -165,6 +251,7 @@ const AddTask = () => {
                     Add Task
                 </button>
             </form>
+            
         </div>
     );
 };
