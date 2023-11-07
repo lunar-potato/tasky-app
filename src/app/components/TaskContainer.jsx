@@ -1,11 +1,11 @@
 import React from "react";
-import TaskCard2 from "./TaskCard2";
+import TaskCard from "./TaskCard";
 import { MoreVertical } from "lucide-react";
 
 // Default Placeholder tasks
 const tasks = [{ title: "To Do" }, { title: "Doing" }, { title: "Done" }];
 
-const TaskContainer2 = ({ title }) => {
+const TaskContainer = ({ title }) => {
   const taskData = tasks.find((taskItem) => taskItem.title === title);
 
   return (
@@ -17,7 +17,7 @@ const TaskContainer2 = ({ title }) => {
         </button>
       </div>
       <div className="grid">
-        <TaskCard2 tasks={taskData} />
+        <TaskCard tasks={taskData} />
       </div>
       <div>
         <button className="flex items-start font-bold hover:text-white">+ Add Card</button>
@@ -30,7 +30,7 @@ const Container = () => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {tasks.map((task, index) => (
-        <TaskContainer2 key={index} title={task.title} />
+        <TaskContainer key={index} title={task.title} />
       ))}
     </div>
   );

@@ -1,77 +1,26 @@
 import React from "react";
+import { Draggable } from "react-beautiful-dnd";
 
-const TaskCard2 = () => {
-  // Defining tasks
-  const tasks = [
-    {
-      id: 1,
-      listPosition: 1,
-      taskTitle: "Pick up dry cleaning",
-      taskCategory: "Errands",
-      notes: "Pick up suits. Dry cleaner opens at 8.30",
-      dueDate: "2023-11-10",
-      taskUrgency: "high",
-      status: "To Do",
-    },
-    {
-      id: 2,
-      listPosition: 2,
-      taskTitle: "Book GP appointment",
-      taskCategory: "Errands",
-      notes: "Need to get my knee sorted out. Call at 8.30am Thursday for same day appointment",
-      dueDate: "2023-11-15",
-      taskUrgency: "high",
-      status: "To Do",
-      
-    },
-    {
-      id: 3,
-      listPosition: 3,
-      taskTitle: "Look up flights",
-      taskCategory: "Errands",
-      notes: "BHX/EMA - ??",
-      dueDate: "2023-11-20",
-      taskUrgency: "medium",
-      status: "in-progress",
-    },
-    {
-      id: 4,
-      listPosition: 4,
-      taskTitle: "Another Task",
-      taskCategory: "Home",
-      notes: "",
-      dueDate: "2023-11-05",
-      taskUrgency: "low",
-      status: "done",
-    },
-    {
-      id: 5,
-      listPosition: 5,
-      taskTitle: "Install node on laptop",
-      taskCategory: "Work",
-      notes: "",
-      dueDate: "2023-11-06",
-      taskUrgency: "high",
-      status: "done",
-    },
-  ];
-
+const TaskCard = ({ task, index, draggableId }) => {
   return (
-    <ul>
-      {tasks.map((task) => (
-        <li key={task.id}>
+    <Draggable draggableId={draggableId} index={index}>
+      {(provided) => (
+        <div
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
           <div className="p-4 mb-4 bg-white rounded shadow">
-            <h3 className="text-lg font-semibold">{task.taskTitle}</h3>
-            <p>{task.notes}</p>
-            <p>Category: {task.taskCategory}</p>
-            <p>Priority: {task.taskUrgency}</p>
-            <p>Date: {task.dueDate}</p>
-            <p>Status: {task.status}</p>
+            <h3 className="text-lg font-semibold">{task.title}</h3>
+            <h4>{task.projectName}</h4>
+            <p>{task.description}</p>
+            <p>Assigned to: {task.assignedTo}</p>
+            <p>Date: {task.date}</p>
           </div>
-        </li>
-      ))}
-    </ul>
+        </div>
+      )}
+    </Draggable>
   );
 };
 
-export default TaskCard2;
+export default TaskCard;
