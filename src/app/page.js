@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import TaskContainer2 from "./components/TaskContainer2";
 import NavbarProject from "./components/NavbarProject";
 import AddTask from "./components/AddTask"; // Importing the AddTask component
+import TaskFilter from "./components/TaskFilter";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <TaskContainer2 />
         <AddTask /> {/* Temporarily adding the AddTask component here */}
         <Footer />
+        <TaskFilter />
       </div>
     </main>
   );

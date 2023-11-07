@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = () => {
+const TaskFilter = () => {
   return (
     <div>
       <p>Task Filter</p>
