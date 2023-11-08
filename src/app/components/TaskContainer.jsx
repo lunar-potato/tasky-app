@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { MoreVertical } from "lucide-react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import TaskCard from "./TaskCard";
 import TaskModal from "./TaskModal";
 import AddTask from "./AddTask";
@@ -36,6 +37,31 @@ const TaskContainer = ({ type }) => {
     setShowAddTaskModal(false);
   };
 
+  const handleDragEnd = async (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const updatedTasks = [...tasks];
+    const [reorderedTask] = updatedTasks.splice(result.source.index, 1);
+    updatedTasks.splice(result.destination.index, 0, reorderedTask);
+
+    setTasks(updatedTasks);
+
+    const newOrder = updatedTasks.map((task, index) => ({
+      id: task.id,
+      order: index,
+    }));
+
+    const { error } = await supabase
+      .from("tasks")
+      .upsert(newOrder, { onConflict: ["id"], returning: "minimal" });
+
+    if (error) {
+      console.error("Error updating task order: ", error);
+    }
+  };
+
   return (
     <div className="p-2 border-white border-x-2 md:border-x-0 lg:m-4 md:shadow-lg md:p-4 md:rounded bg-slate-500">
       <div className="flex items-center justify-between mb-2">
@@ -44,9 +70,18 @@ const TaskContainer = ({ type }) => {
           <MoreVertical className="w-9 h-9" />
         </button>
       </div>
-      <ul>
-        <TaskCard tasks={tasks} />
-      </ul>
+
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId="tasks" type="TASK">
+          {(provided) => (
+            <ul ref={provided.innerRef} {...provided.droppableProps}>
+              <TaskCard tasks={tasks} />
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+
       <div>
         <button
           className="flex items-start font-bold text-white hover:text-teal-200"
@@ -62,7 +97,7 @@ const TaskContainer = ({ type }) => {
             <AddTask onClose={addTaskCallback} />
           </TaskModal>
         )}
-        </div>
+      </div>
     </div>
   );
 };
