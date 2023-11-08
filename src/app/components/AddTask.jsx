@@ -10,7 +10,8 @@ const AddTask = () => {
     taskTitle: "",
     comment: "",
     dueDate: null,
-    priority: "medium",
+    priority: "Medium",
+    taskType: "To Do",
   });
 
   const supabaseUrl = "https://vumfiwtseuqdsodbaghp.supabase.co";
@@ -22,9 +23,9 @@ const AddTask = () => {
   }, []);
 
   const fetchTasks = async () => {
-    const { data, err } = await supabase.from("tasks").select();
-    if (err) {
-      console.err("Error fetching tasks from Supabase: ", err);
+    const { data, error } = await supabase.from("tasks").select();
+    if (error) {
+      console.error("Error fetching tasks from Supabase: ", error);
     } else {
       setTasks(data);
     }
@@ -37,12 +38,16 @@ const AddTask = () => {
       comment: formData.comment,
       dueDate: formData.dueDate || null,
       priority: formData.priority,
+      taskType: formData.taskType,
     };
 
-    const { data, err } = await supabase.from("tasks").insert(newTask).select();
+    const { data, error } = await supabase
+      .from("tasks")
+      .insert(newTask)
+      .select();
 
-    if (err) {
-      console.err("Error adding task to Supabase: ", err);
+    if (error) {
+      console.error("Error adding task to Supabase: ", error);
     } else {
       console.log("Task added to Supabase: ", data);
       console.log("Current Tasks: ", tasks);
@@ -51,7 +56,8 @@ const AddTask = () => {
         taskTitle: "",
         comment: "",
         dueDate: null,
-        priority: "medium",
+        priority: "Medium", // Resets it to medium
+        taskType: "To Do", // Resets it to "To Do"
       });
     }
   };
@@ -62,6 +68,7 @@ const AddTask = () => {
         onSubmit={handleSubmit}
         className="px-8 pt-6 pb-8 mb-4 rounded shadow-sm bg-sky-100"
       >
+        {/* Task title */}
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Task Title</label>
           <input
@@ -75,6 +82,7 @@ const AddTask = () => {
           />
         </div>
 
+        {/* Description */}
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Description</label>
           <textarea
@@ -88,10 +96,9 @@ const AddTask = () => {
           />
         </div>
 
+        {/* Due date */}
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-semibold">
-            Due Date
-          </label>
+          <label className="block mb-2 text-sm font-semibold">Due Date</label>
           <DatePicker
             selected={formData.dueDate}
             onChange={(date) => setFormData({ ...formData, dueDate: date })}
@@ -101,20 +108,42 @@ const AddTask = () => {
             className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded focus:outline-none focus:border-gray-300"
           />
         </div>
-        <label className="block mb-2 text-sm font-semibold">
-          Task Priority
-        </label>
-        <select
-          name="priority"
-          value={formData.priority}
-          onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
-          className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300"
-        >
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
-        </select>
-        <div className="mb-4"></div>
+
+        {/* Priority */}
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-semibold">
+            Task Priority
+          </label>
+          <select
+            name="priority"
+            value={formData.priority}
+            onChange={(e) =>
+              setFormData({ ...formData, priority: e.target.value })
+            }
+            className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300"
+          >
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+
+        {/* Task Type */}
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-semibold">Task Type</label>
+          <select
+            name="taskType"
+            value={formData.taskType}
+            onChange={(e) =>
+              setFormData({ ...formData, taskType: e.target.value })
+            }
+            className="block w-full px-4 py-3 pr-8 leading-tight bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300"
+          >
+            <option value="To Do">To Do</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+          </select>
+        </div>
 
         <button
           type="submit"
