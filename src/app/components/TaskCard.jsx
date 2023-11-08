@@ -40,7 +40,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                 {(provided) => (
                   {/*<motion.li*/
                     /*whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.1 }}*/
+                transition={{ duration: 0.1 }}*/}
                     <li 
                     ref={provided.innerRef}
                     {...provided.draggableProps}
@@ -66,7 +66,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                         </p>
                       </div>
                     </a>
-                  {/*</motion.li>*/
+                  {/*</motion.li>*/}
                   </li>
                 )}
               </Draggable>
