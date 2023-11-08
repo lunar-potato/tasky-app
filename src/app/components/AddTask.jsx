@@ -3,19 +3,17 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createClient } from "@supabase/supabase-js";
 import TaskCard from "./TaskCard";
-import { X } from "lucide-react";
 
 const AddTask = ({ onClose }) => {
-  // Accept onClose as a prop
   const [tasks, setTasks] = useState([]);
   const [formData, setFormData] = useState({
     taskTitle: "",
-    taskCategory: "",
     comment: "",
     dueDate: null,
     priority: "Medium",
     taskType: "To Do",
   });
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const supabaseUrl = "https://vumfiwtseuqdsodbaghp.supabase.co";
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
@@ -42,7 +40,6 @@ const AddTask = ({ onClose }) => {
       dueDate: formData.dueDate || null,
       priority: formData.priority,
       taskType: formData.taskType,
-      taskCategory: formData.taskCategory,
     };
 
     const { data, error } = await supabase
@@ -63,21 +60,17 @@ const AddTask = ({ onClose }) => {
         priority: "Medium", // Resets it to medium
         taskType: "To Do", // Resets it to "To Do"
       });
-
-      onClose(); // Close the modal by calling the onClose function
+      setIsModalOpen(false);
     }
   };
 
   return (
     <div className="w-full max-w-md p-4 mx-auto">
+      {isModalOpen && (
       <form
         onSubmit={handleSubmit}
         className="px-8 pt-6 pb-8 mb-4 rounded shadow-sm bg-sky-100"
       >
-        <button className="modal-close hover:text-slate-500" onClick={onClose}>
-          <X size={20} />
-        </button>
-
         {/* Task title */}
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Task Title</label>
@@ -94,7 +87,9 @@ const AddTask = ({ onClose }) => {
 
         {/* Description */}
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Task Comments</label>
+          <label className="block mb-2 text-sm font-bold">
+            Task Comments
+            </label>
           <textarea
             className="block w-full px-4 py-3 pr-8 leading-tight border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-300"
             maxLength="300"
@@ -140,7 +135,9 @@ const AddTask = ({ onClose }) => {
 
         {/* Task Type */}
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-semibold">Task Type</label>
+          <label className="block mb-2 text-sm font-semibold">
+            Task Type
+            </label>
           <select
             name="taskType"
             value={formData.taskType}
@@ -162,7 +159,7 @@ const AddTask = ({ onClose }) => {
           Add Task
         </button>
       </form>
-
+      )}
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
