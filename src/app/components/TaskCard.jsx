@@ -1,22 +1,15 @@
 import React from "react";
 
-const TaskCard = () => {
-  // Defining tasks
-  const tasks = [
-    
-  ];
-
+const TaskCard = ({ tasks }) => {
   return (
     <ul>
-      {tasks.map((task) => (
+      {tasks && tasks.map((task) => (
         <li key={task.id}>
           <div className="p-4 mb-4 bg-white rounded shadow">
             <h3 className="text-lg font-semibold">{task.taskTitle}</h3>
-            <p>{task.notes}</p>
-            <p>Category: {task.taskCategory}</p>
-            <p>Priority: {task.taskUrgency}</p>
+            <p>{task.comment}</p>
+            <p>Priority: {task.priority}</p>
             <p>Date: {task.dueDate}</p>
-            <p>Status: {task.status}</p>
           </div>
         </li>
       ))}

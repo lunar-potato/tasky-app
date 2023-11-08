@@ -1,12 +1,12 @@
 import React from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
     <nav className="justify-center p-8 text-center bg-slate-500">
-      <img className="inline" src="./tasky-200-w-t.png" width="150" alt="Tasky logo" />
+      <Image src="/tasky-200-w-t.png" alt="Tasky logo" width={150} height={150} />
     </nav>
   );
 };
-
 
 export default Navbar;

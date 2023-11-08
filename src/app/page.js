@@ -1,7 +1,6 @@
 "use client";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
-//import TaskContainer from "./components/TaskContainer";
 import TaskContainer from "./components/TaskContainer";
 import NavbarProject from "./components/NavbarProject";
 import AddTask from "./components/AddTask"; // Importing the AddTask component
