@@ -35,12 +35,13 @@ for (let i = 0; i < overlayElements.length; i++) {
       </ul>
 
       {selectedTask && (
-        <div className="p-4 mb-4 bg-white border-2 rounded shadow overlay">
-          <div className="bg-white rounded card-overlay">
+        <div className="overlay">
+          <div className="p-4 mb-4 bg-white rounded shadow card-overlay">
             <h3 className="text-lg font-semibold">{selectedTask.taskTitle}</h3>
             <p>{selectedTask.comment}</p>
             <p className="my-1 text-xs text-right text-slate-500">Due on: {selectedTask.dueDate}</p>
-            <button className="" onClick={closeCardOverlay}>Close</button>
+            {/*<p>Priority: {selectedTask.priority}</p>*/}
+            <button className="cursor-pointer" onClick={closeCardOverlay}>Close</button>
           </div>
         </div>
       )}
