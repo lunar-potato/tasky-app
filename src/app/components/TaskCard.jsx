@@ -26,7 +26,7 @@ const TaskCard = ({ tasks }) => {
         {tasks &&
           tasks.map((task, index) => (
             <AnimatePresence>
-            <Draggable key={task.id} draggableId={task.id} index={index}>
+            <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
               {(provided) => (
                 <motion.li
                   whileHover={{ scale: 1.05 }}
@@ -69,7 +69,6 @@ const TaskCard = ({ tasks }) => {
             <p className="my-1 text-xs text-right text-slate-500">
              Priority: {selectedTask.priority}
             </p>
-            {/*<p>Priority: {selectedTask.priority}</p>*/}
           </div>
         </div>
       )}

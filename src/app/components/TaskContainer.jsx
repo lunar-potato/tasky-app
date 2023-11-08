@@ -42,6 +42,9 @@ const TaskContainer = ({ type }) => {
       return;
     }
 
+    const sourceColumn = result.source.droppableId;
+    const destinationColumn = result.destination.droppableId;
+
     const updatedTasks = [...tasks];
     const [reorderedTask] = updatedTasks.splice(result.source.index, 1);
     updatedTasks.splice(result.destination.index, 0, reorderedTask);
@@ -60,6 +63,19 @@ const TaskContainer = ({ type }) => {
     if (error) {
       console.error("Error updating task order: ", error);
     }
+
+    if (sourceColumn !== destinationColumn) {
+      const taskToMove = tasks[result.source.index];
+
+      const { error } = await supabase
+        .from("tasks")
+        .update({ taskType: destinationColumn })
+        .eq("id", taskToMove.id);
+
+      if (error) {
+        console.error("Error updating task type: ", error);
+      }
+    }
   };
 
   return (
@@ -72,7 +88,7 @@ const TaskContainer = ({ type }) => {
       </div>
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="tasks" type="TASK">
+        <Droppable droppableId={type}>
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
               <TaskCard tasks={tasks} />
