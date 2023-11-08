@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TaskCard = () => {
+const TaskCard = ({tasks}) => {
 
   const [selectedTask, setSelectedTask] = useState(null);
     console.log(selectedTask);
