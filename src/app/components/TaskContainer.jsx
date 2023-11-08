@@ -34,7 +34,7 @@ const TaskContainer = ({ type }) => {
     console.log("Adding task:", newTask);
     setTasks([...tasks, newTask]);
     setShowAddTaskModal(false); 
-  };
+  }; 
 
   return (
     <div className="p-2 border-white border-x-2 md:border-x-0 lg:m-4 md:shadow-lg md:p-4 md:rounded bg-slate-500">
@@ -55,7 +55,10 @@ const TaskContainer = ({ type }) => {
           + Add Task
         </button>
         {showAddTaskModal && (
-          <TaskModal onClose={() => setShowAddTaskModal(false)}>
+          <TaskModal 
+          isOpen={showAddTaskModal}
+          onClose={() => setShowAddTaskModal(false)}
+          >
             <AddTask onClose={addTaskCallback} />
           </TaskModal>
         )}
