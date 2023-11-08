@@ -11,8 +11,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const TaskContainer = ({ type }) => {
   const [tasks, setTasks] = useState([]);
-  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
-
+  const [isAddTaskOpen, setIsAddTaskOpen] = useState(false); 
+// created a new constant
   useEffect(() => {
     async function fetchTasks() {
       const { data, error } = await supabase
@@ -33,7 +33,7 @@ const TaskContainer = ({ type }) => {
   const addTaskCallback = (newTask) => {
     console.log("Adding task:", newTask);
     setTasks([...tasks, newTask]);
-    setShowAddTaskModal(false); 
+    setIsAddTaskOpen(false); // Closing the "Add Task" dropdown
   };
 
   return (
@@ -50,19 +50,32 @@ const TaskContainer = ({ type }) => {
       <div>
         <button
           className="flex items-start font-bold hover:text-white"
-          onClick={() => setShowAddTaskModal(true)}
+          onClick={() => setIsAddTaskOpen(!isAddTaskOpen)} // Toggling the "Add Task" dropdown
         >
           + Add Card
-        </button>
-        {showAddTaskModal && (
-          <TaskModal onClose={() => setShowAddTaskModal(false)}>
-            <AddTask onClose={addTaskCallback} />
-          </TaskModal>
+          </button>
+        {isAddTaskOpen && (
+          <div className="add-task-dropdown">
+          <AddTask onClose={addTaskCallback} />
+        </div>
         )}
       </div>
     </div>
   );
 };
+// This is where I have done the changes if modal needs to be added, can be done here 
+//   + Add Card
+// </button>
+// {showAddTaskModal && (
+//   <TaskModal onClose={() => setShowAddTaskModal(false)}>
+//     <AddTask onClose={addTaskCallback} />
+//   </TaskModal>
+// )}
+// </div>
+// </div>
+// );
+// };
+
 
 const Container = () => {
   return (
