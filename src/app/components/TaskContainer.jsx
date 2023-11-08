@@ -37,10 +37,10 @@ const TaskContainer = ({ type }) => {
   };
 
   return (
-    <div className="p-4 m-4 rounded shadow-lg bg-slate-500">
+    <div className="p-2 shadow-lg md:p-4 md:rounded bg-slate-500">
       <div className="flex items-center justify-between mb-2">
-        <h4 className="text-4xl font-bold">{type}</h4>
-        <button className="hover:text-white">
+        <h4 className="text-3xl font-bold text-white">{type}</h4>
+        <button className="text-white hover:text-teal-200">
           <MoreVertical className="w-9 h-9" />
         </button>
       </div>
@@ -49,24 +49,24 @@ const TaskContainer = ({ type }) => {
       </ul>
       <div>
         <button
-          className="flex items-start font-bold hover:text-white"
+          className="flex items-start font-bold text-white hover:text-teal-200"
           onClick={() => setShowAddTaskModal(true)}
         >
-          + Add Card
+          + Add Task
         </button>
         {showAddTaskModal && (
           <TaskModal onClose={() => setShowAddTaskModal(false)}>
             <AddTask onClose={addTaskCallback} />
           </TaskModal>
         )}
-      </div>
+        </div>
     </div>
   );
 };
 
 const Container = () => {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-0 md:gap-4">
       <TaskContainer type="To Do" />
       <TaskContainer type="Doing" />
       <TaskContainer type="Done" />

@@ -25,43 +25,6 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-.nav {
-  border: 1px solid #ccc;
-  border-width: 1px 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center; /* « The magic. */
-}
-
-.nav li {
-  display: inline; /* « More magic. */
-}
-
-.nav a {
-  display: inline-block; /* « Last bit of magic. */
-  padding: 10px;
-
-  &:hover {
-    color: white; 
-  text-decoration: none;
-  }
-}
-
-
-
-
-/* Card Style */
-.card {
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 /* Card Hover Effect */
 .card:hover {
@@ -105,8 +68,6 @@ body {
   top: 10px;
   right: 10px;
 }
-
-
 
 
 /* Show Overlay */

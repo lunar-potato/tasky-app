@@ -1,21 +1,19 @@
 "use client";
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import Footer from "./components/footer";
 import TaskContainer from "./components/TaskContainer";
-import NavbarProject from "./components/NavbarProject";
+import TitleBar from "./components/TitleBar";
 import TaskFilter from "./components/TaskFilter";
-import AddTask from "./components/AddTask";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
-      <Navbar />
-      <NavbarProject />
-      <div className="container px-12 py-4 mx-auto mt-6">
+      <Header />
+      <TitleBar />
+      <div className="container mx-auto mt-2 md:px-12">
         <TaskContainer />
         <Footer />
         <TaskFilter />
-        <AddTask />
       </div>
     </main>
   );

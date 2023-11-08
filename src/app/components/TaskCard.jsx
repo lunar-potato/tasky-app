@@ -22,15 +22,12 @@ for (let i = 0; i < overlayElements.length; i++) {
     <div>
       <ul>
         {tasks && tasks.map((task) => (
-          <li className="card" key={task.id}>
+          <li className="p-4 mb-4 bg-white rounded shadow cursor-pointer card" key={task.id}>
             <a onClick={() => openCardOverlay(task)}>
-            <div className="p-4 mb-4 bg-white rounded shadow">
+            <div className="">
               <h3 className="text-lg font-semibold">{task.taskTitle}</h3>
-              <p className="invisible md:visible ">{task.comment}</p>
-              <p>Category: {task.taskCategory}</p>
-              <p>Priority: {task.priority}</p>
-              <p>Date: {task.dueDate}</p>
-              <p>Status: {task.taskType}</p>
+              <p className="hidden md:block">{task.comment}</p>
+              <p className="text-xs text-right text-slate-500">Due on: {task.dueDate}</p>
             </div>
             </a>
           </li>
@@ -38,15 +35,12 @@ for (let i = 0; i < overlayElements.length; i++) {
       </ul>
 
       {selectedTask && (
-        <div className="overlay">
-          <div className="card-overlay">
+        <div className="p-4 mb-4 bg-white border-2 rounded shadow overlay">
+          <div className="bg-white rounded card-overlay">
             <h3 className="text-lg font-semibold">{selectedTask.taskTitle}</h3>
             <p>{selectedTask.comment}</p>
-            <p>Category: {selectedTask.taskCategory}</p>
-            <p>Priority: {selectedTask.priority}</p>
-            <p>Date: {selectedTask.dueDate}</p>
-            <p>Status: {selectedTask.taskType}</p>
-            <button onClick={closeCardOverlay}>Close</button>
+            <p className="my-1 text-xs text-right text-slate-500">Due on: {selectedTask.dueDate}</p>
+            <button className="" onClick={closeCardOverlay}>Close</button>
           </div>
         </div>
       )}
