@@ -57,7 +57,6 @@ const TaskCard = ({ tasks }) => {
             <p className="my-1 text-xs text-right text-slate-500">
               Due on: {selectedTask.dueDate}
             </p>
-            {/*<p>Priority: {selectedTask.priority}</p>*/}
             <button className="cursor-pointer" onClick={closeCardOverlay}>
               Close
             </button>
