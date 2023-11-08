@@ -3,8 +3,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createClient } from "@supabase/supabase-js";
 import TaskCard from "./TaskCard";
+import { X } from "lucide-react";
 
-const AddTask = () => {
+const AddTask = ({ onClose }) => {
+  // Accept onClose as a prop
   const [tasks, setTasks] = useState([]);
   const [formData, setFormData] = useState({
     taskTitle: "",
@@ -59,6 +61,8 @@ const AddTask = () => {
         priority: "Medium", // Resets it to medium
         taskType: "To Do", // Resets it to "To Do"
       });
+
+      onClose(); // Close the modal by calling the onClose function
     }
   };
 
@@ -68,6 +72,9 @@ const AddTask = () => {
         onSubmit={handleSubmit}
         className="px-8 pt-6 pb-8 mb-4 rounded shadow-sm bg-sky-100"
       >
+        <button className="modal-close hover:text-slate-500" onClick={onClose}>
+          <X size={20} />
+        </button>
         {/* Task title */}
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Task Title</label>
