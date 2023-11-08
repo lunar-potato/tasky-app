@@ -59,8 +59,6 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                             }}
                             className="hover:text-red-500 text-xl absolute top-2 right-2" // Applying hover effect, change color to red, and position to top-right
                           />
-                          <p className="hidden md:block">{task.comment}</p>
-                          <p className="hidden text-xs text-right md:block text-slate-500">
                         <p className="hidden md:block">{task.comment}</p>
                         <p className="hidden text-xs text-right md:block text-slate-500">
                           Due on: {task.dueDate}
