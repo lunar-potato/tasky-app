@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { X } from "lucide-react"; // Import the Lucide "X" icon
 
 const TaskCard = ({ tasks }) => {
   const [selectedTask, setSelectedTask] = useState(null);
@@ -58,8 +59,8 @@ const TaskCard = ({ tasks }) => {
               Due on: {selectedTask.dueDate}
             </p>
             {/*<p>Priority: {selectedTask.priority}</p>*/}
-            <button className="cursor-pointer" onClick={closeCardOverlay}>
-              Close
+            <button className="text-black cursor-pointer hover:text-teal-500" onClick={closeCardOverlay}>
+              <X size={24} /> {/* Use the Lucide "X" icon */}
             </button>
           </div>
         </div>

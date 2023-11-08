@@ -19,7 +19,7 @@ const TaskModal = ({ isOpen, onClose, children }) => {
             exit={{ scale: 0.5 }}
           >
             <button
-              className="absolute text-black hover:text-white top-2 right-2"
+              className="justify-end text-right text-black hover:text-teal-500"
               onClick={onClose}
             >
               <X size={24} /> {/* Use the Lucide "X" icon */}
