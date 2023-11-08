@@ -6,7 +6,7 @@ const TaskOverlay = ({ task, onCloseOverlay }) => {
       <div className="overlay-content">
         <h3 className="text-lg font-semibold">{task.taskTitle}</h3>
         <p>{task.notes}</p>
-        <p className="my-1 text-xs text-right text-slate-500">Due on: {selectedTask.dueDate}</p>
+        <p className="hidden my-1 text-xs text-right text-slate-500 md:block">Due on: {selectedTask.dueDate}</p>
         <button className="cursor-pointer" onClick={onCloseOverlay}>Close</button>
       </div>
     </div>

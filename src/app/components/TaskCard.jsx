@@ -27,7 +27,7 @@ for (let i = 0; i < overlayElements.length; i++) {
             <div className="">
               <h3 className="text-lg font-semibold">{task.taskTitle}</h3>
               <p className="hidden md:block">{task.comment}</p>
-              <p className="text-xs text-right text-slate-500">Due on: {task.dueDate}</p>
+              <p className="hidden text-xs text-right md:block text-slate-500">Due on: {task.dueDate}</p>
             </div>
             </a>
           </li>
