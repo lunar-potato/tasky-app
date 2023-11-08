@@ -21,7 +21,7 @@ for (let i = 0; i < overlayElements.length; i++) {
   return (
     <div>
       <ul>
-        {tasks.map((task) => (
+        {tasks && tasks.map((task) => (
           <li className="card" key={task.id}>
             <a onClick={() => openCardOverlay(task)}>
             <div className="p-4 mb-4 bg-white rounded shadow">
