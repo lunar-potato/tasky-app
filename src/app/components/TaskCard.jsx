@@ -36,7 +36,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
         {tasks &&
           tasks.map((task, index) => (
             <AnimatePresence>
-              <Draggable key={task.id} draggableId={task.id} index={index}>
+              <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                 {(provided) => (
                   <motion.li
                     whileHover={{ scale: 1.05 }}
@@ -44,7 +44,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className="relative p-4 mb-4 bg-white rounded shadow cursor-pointer card"
+                    className="p-4 mb-4 bg-white rounded shadow cursor-pointer card"
                     key={task.id}
                   >
                     <a onClick={() => openCardOverlay(task)}>
@@ -52,13 +52,15 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                         <h3 className="text-lg font-semibold">
                           {task.taskTitle}
                         </h3>
-                        <Trash2
-                          onClick={(e) => {
-                            e.stopPropagation(); // Prevent opening overlay
-                            handleDelete(task.id);
-                          }}
-                          className="hover:text-red-500 text-xl absolute top-2 right-2" // Applying hover effect, change color to red, and position to top-right
-                        />
+                          <Trash2
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent opening overlay
+                              handleDelete(task.id);
+                            }}
+                            className="hover:text-red-500 text-xl absolute top-2 right-2" // Applying hover effect, change color to red, and position to top-right
+                          />
+                          <p className="hidden md:block">{task.comment}</p>
+                          <p className="hidden text-xs text-right md:block text-slate-500">
                         <p className="hidden md:block">{task.comment}</p>
                         <p className="hidden text-xs text-right md:block text-slate-500">
                           Due on: {task.dueDate}
