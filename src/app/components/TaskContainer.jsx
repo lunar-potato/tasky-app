@@ -88,7 +88,7 @@ const TaskContainer = ({ type }) => {
       </div>
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId={type} type={type}>
+        <Droppable droppableId={type}>
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
               <TaskCard tasks={tasks} />

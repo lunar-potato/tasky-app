@@ -23,7 +23,7 @@ const TaskCard = ({ tasks }) => {
       <ul>
         {tasks &&
           tasks.map((task, index) => (
-            <Draggable key={task.id} draggableId={task.id} index={index}>
+            <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
               {(provided) => (
                 <li
                   ref={provided.innerRef}
