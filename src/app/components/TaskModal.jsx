@@ -7,18 +7,21 @@ const TaskModal = ({ isOpen, onClose, children }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="modal-overlay"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="modal"
+            className="z-50 p-4 bg-white rounded shadow-md"
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.5 }}
           >
-            <button className="modal-close" onClick={onClose}>
+            <button
+              className="absolute text-black hover:text-white top-2 right-2"
+              onClick={onClose}
+            >
               <X size={24} /> {/* Use the Lucide "X" icon */}
             </button>
             {children}

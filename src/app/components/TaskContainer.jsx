@@ -33,7 +33,7 @@ const TaskContainer = ({ type }) => {
   const addTaskCallback = (newTask) => {
     console.log("Adding task:", newTask);
     setTasks([...tasks, newTask]);
-    setShowAddTaskModal(false); 
+    setShowAddTaskModal(false);
   };
 
   return (
@@ -45,7 +45,7 @@ const TaskContainer = ({ type }) => {
         </button>
       </div>
       <ul>
-        <TaskCard tasks={tasks} /> 
+        <TaskCard tasks={tasks} />
       </ul>
       <div>
         <button
@@ -55,7 +55,10 @@ const TaskContainer = ({ type }) => {
           + Add Card
         </button>
         {showAddTaskModal && (
-          <TaskModal onClose={() => setShowAddTaskModal(false)}>
+          <TaskModal
+            isOpen={showAddTaskModal}
+            onClose={() => setShowAddTaskModal(false)}
+          >
             <AddTask onClose={addTaskCallback} />
           </TaskModal>
         )}
