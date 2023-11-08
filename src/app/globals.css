@@ -26,12 +26,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-/* Card Hover Effect */
-.card:hover {
-  transform: scale(1.05);
-  transition: transform 0.2s ease-in-out;
-}
-
 /* Overlay Style */
 .overlay {
   display: none;
@@ -52,7 +46,6 @@ body {
   max-width: 50%;
   overflow-y: auto;
   position: relative;
-  transform: translate(0, 0);
 }
 
 /* Close Button */

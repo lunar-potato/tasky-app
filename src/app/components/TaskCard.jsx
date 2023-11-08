@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react"; // Import the Lucide "X" icon
 
 const TaskCard = ({ tasks }) => {
@@ -24,9 +25,12 @@ const TaskCard = ({ tasks }) => {
       <ul>
         {tasks &&
           tasks.map((task, index) => (
+            <AnimatePresence>
             <Draggable key={task.id} draggableId={task.id} index={index}>
               {(provided) => (
-                <li
+                <motion.li
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.1 }}
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
@@ -44,9 +48,10 @@ const TaskCard = ({ tasks }) => {
                       </p>
                     </div>
                   </a>
-                </li>
+                </motion.li>
               )}
             </Draggable>
+            </AnimatePresence>
           ))}
       </ul>
 
