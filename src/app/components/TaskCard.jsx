@@ -35,12 +35,13 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
       <ul>
         {tasks &&
           tasks.map((task, index) => (
-            <AnimatePresence>
+            {/*<AnimatePresence>/*}
               <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                 {(provided) => (
-                  <motion.li
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.1 }}
+                  {/*<motion.li*/
+                    /*whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.1 }}*/
+                    <li 
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -65,10 +66,11 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                         </p>
                       </div>
                     </a>
-                  </motion.li>
+                  {/*</motion.li>*/
+                  </li>
                 )}
               </Draggable>
-            </AnimatePresence>
+            {/*</AnimatePresence>*/}
           ))}
       </ul>
 
