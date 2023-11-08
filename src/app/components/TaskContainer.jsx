@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { MoreVertical } from "lucide-react";
-import TaskCard from "./TaskCard"; // Import the TaskCard component
+import TaskCard from "./TaskCard";
+import TaskModal from "./TaskModal";
+import AddTask from "./AddTask";
 
 const supabaseUrl = "https://vumfiwtseuqdsodbaghp.supabase.co";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
@@ -9,6 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const TaskContainer = ({ type }) => {
   const [tasks, setTasks] = useState([]);
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 
   useEffect(() => {
     async function fetchTasks() {
@@ -27,6 +30,12 @@ const TaskContainer = ({ type }) => {
     fetchTasks();
   }, [type]);
 
+  const addTaskCallback = (newTask) => {
+    console.log("Adding task:", newTask);
+    setTasks([...tasks, newTask]);
+    setShowAddTaskModal(false); 
+  };
+
   return (
     <div className="p-4 m-4 rounded shadow-lg bg-slate-500">
       <div className="flex items-center justify-between mb-2">
@@ -36,10 +45,20 @@ const TaskContainer = ({ type }) => {
         </button>
       </div>
       <ul>
-        <TaskCard tasks={tasks} /> {/* Pass tasks as a prop to TaskCard */}
+        <TaskCard tasks={tasks} /> 
       </ul>
       <div>
-        <button className="flex items-start font-bold hover:text-white">+ Add Card</button>
+        <button
+          className="flex items-start font-bold hover:text-white"
+          onClick={() => setShowAddTaskModal(true)}
+        >
+          + Add Card
+        </button>
+        {showAddTaskModal && (
+          <TaskModal onClose={() => setShowAddTaskModal(false)}>
+            <AddTask onClose={addTaskCallback} />
+          </TaskModal>
+        )}
       </div>
     </div>
   );
