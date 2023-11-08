@@ -56,17 +56,20 @@ const TaskCard = ({ tasks }) => {
       </ul>
 
       {selectedTask && (
-        <div className="overlay">
-          <div className="p-4 mb-4 bg-white rounded shadow card-overlay">
-            <h3 className="text-lg font-semibold">{selectedTask.taskTitle}</h3>
+        <div className="fixed flex overlay z-25 bg-black/70">
+          <div className="w-11/12 p-4 pr-6 mb-4 bg-white rounded shadow card-overlay md:w-5/12">
+            <button className="absolute text-black cursor-pointer hover:text-teal-500 top-2 right-2" onClick={closeCardOverlay}>
+              <X size={24} /> {/* Use the Lucide "X" icon */}
+            </button>
+            <h3 className="text-3xl font-semibold">{selectedTask.taskTitle}</h3>
             <p>{selectedTask.comment}</p>
             <p className="my-1 text-xs text-right text-slate-500">
               Due on: {selectedTask.dueDate}
             </p>
+            <p className="my-1 text-xs text-right text-slate-500">
+             Priority: {selectedTask.priority}
+            </p>
             {/*<p>Priority: {selectedTask.priority}</p>*/}
-            <button className="text-black cursor-pointer hover:text-teal-500" onClick={closeCardOverlay}>
-              <X size={24} /> {/* Use the Lucide "X" icon */}
-            </button>
           </div>
         </div>
       )}
