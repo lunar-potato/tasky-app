@@ -35,18 +35,18 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
       <ul>
         {tasks &&
           tasks.map((task, index) => (
-            <AnimatePresence>
+            /*<AnimatePresence>*/
               <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                 {(provided) => (
-                  <motion.li
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.1 }}
+                  //<motion.li
+                  <li
+                    //whileHover={{ scale: 1.05 }}
+                    //transition={{ duration: 0.1 }}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     className="p-4 mb-4 bg-white rounded shadow cursor-pointer card"
-                    key={task.id}
-                  >
+                    key={task.id} >
                     <a onClick={() => openCardOverlay(task)}>
                       <div className="">
                         <h3 className="text-lg font-semibold">
@@ -57,20 +57,19 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                               e.stopPropagation(); // Prevent opening overlay
                               handleDelete(task.id);
                             }}
-                            className="hover:text-red-500 text-xl absolute top-2 right-2" // Applying hover effect, change color to red, and position to top-right
+                            className="absolute text-xl hover:text-red-500 top-2 right-2" // Applying hover effect, change color to red, and position to top-right
                           />
-                          <p className="hidden md:block">{task.comment}</p>
-                          <p className="hidden text-xs text-right md:block text-slate-500">
                         <p className="hidden md:block">{task.comment}</p>
                         <p className="hidden text-xs text-right md:block text-slate-500">
                           Due on: {task.dueDate}
                         </p>
                       </div>
                     </a>
-                  </motion.li>
+                {/*</motion.li>*/}
+                </li>
                 )}
               </Draggable>
-            </AnimatePresence>
+            /*</AnimatePresence>*/
           ))}
       </ul>
 
