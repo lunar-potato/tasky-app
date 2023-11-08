@@ -4,7 +4,6 @@ import Footer from "./components/footer";
 import TaskContainer from "./components/TaskContainer";
 import NavbarProject from "./components/NavbarProject";
 import TaskFilter from "./components/TaskFilter";
-import AddTask from "./components/AddTask";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
         <TaskContainer />
         <Footer />
         <TaskFilter />
-        <AddTask />
       </div>
     </main>
   );
