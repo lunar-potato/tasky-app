@@ -26,11 +26,11 @@ for (let i = 0; i < overlayElements.length; i++) {
             <a onClick={() => openCardOverlay(task)}>
             <div className="p-4 mb-4 bg-white rounded shadow">
               <h3 className="text-lg font-semibold">{task.taskTitle}</h3>
-              <p>{task.notes}</p>
+              <p className="invisible md:visible ">{task.comment}</p>
               <p>Category: {task.taskCategory}</p>
-              <p>Priority: {task.taskUrgency}</p>
+              <p>Priority: {task.priority}</p>
               <p>Date: {task.dueDate}</p>
-              <p>Status: {task.status}</p>
+              <p>Status: {task.taskType}</p>
             </div>
             </a>
           </li>
@@ -41,11 +41,11 @@ for (let i = 0; i < overlayElements.length; i++) {
         <div className="overlay">
           <div className="card-overlay">
             <h3 className="text-lg font-semibold">{selectedTask.taskTitle}</h3>
-            <p>{selectedTask.notes}</p>
+            <p>{selectedTask.comment}</p>
             <p>Category: {selectedTask.taskCategory}</p>
-            <p>Priority: {selectedTask.taskUrgency}</p>
+            <p>Priority: {selectedTask.priority}</p>
             <p>Date: {selectedTask.dueDate}</p>
-            <p>Status: {selectedTask.status}</p>
+            <p>Status: {selectedTask.taskType}</p>
             <button onClick={closeCardOverlay}>Close</button>
           </div>
         </div>
