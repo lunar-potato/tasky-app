@@ -35,7 +35,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
       <ul>
         {tasks &&
           tasks.map((task, index) => (
-            {/*<AnimatePresence>/*}
+            {/*<AnimatePresence>*/}
               <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                 {(provided) => (
                   {/*<motion.li*/
