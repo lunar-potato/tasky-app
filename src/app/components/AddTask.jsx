@@ -4,6 +4,21 @@ import "react-datepicker/dist/react-datepicker.css";
 import { createClient } from "@supabase/supabase-js";
 import TaskCard from "./TaskCard";
 
+// Custom styled success message component
+const SuccessMessage = ({ message, onOkClick }) => (
+  <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="z-50 p-4 bg-white rounded shadow-md">
+      <div className="mb-4">{message}</div>
+      <button
+        onClick={onOkClick}
+        className="px-4 py-2 font-bold text-white bg-teal-500 rounded hover:bg-teal-400 focus:outline-none focus:shadow-outline"
+      >
+        OK
+      </button>
+    </div>
+  </div>
+);
+
 const AddTask = ({ onClose }) => {
   const [tasks, setTasks] = useState([]);
   const [formData, setFormData] = useState({
@@ -14,6 +29,8 @@ const AddTask = ({ onClose }) => {
     taskType: "To Do",
   });
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [successMessage, setSuccessMessage] = useState(null);
+
 
   const supabaseUrl = "https://vumfiwtseuqdsodbaghp.supabase.co";
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
@@ -31,7 +48,10 @@ const AddTask = ({ onClose }) => {
       setTasks(data);
     }
   };
-
+  const handleOkClick = () => {
+    // Force refresh the page after clicking OK
+    window.location.reload();
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newTask = {
@@ -61,7 +81,9 @@ const AddTask = ({ onClose }) => {
         taskType: "To Do", // Resets it to "To Do"
       });
       setIsModalOpen(false);
-      window.location.reload();
+
+        // Display a success message dynamically
+        setSuccessMessage("Task Added Successfully");
     }
   };
 
@@ -160,6 +182,12 @@ const AddTask = ({ onClose }) => {
             Add Task
           </button>
         </form>
+      )}
+      {successMessage && (
+        <SuccessMessage
+          message={successMessage}
+          onOkClick={handleOkClick}
+        />
       )}
       <ul>
         {tasks.map((task) => (
