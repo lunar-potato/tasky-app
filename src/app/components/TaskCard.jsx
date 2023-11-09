@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Trash2, Maximize } from "lucide-react"; // Import the Lucide "X" icon
-import { deleteTask } from "./TaskService"; // Import the deleteTask function
+import { X, Trash2, Maximize } from "lucide-react"; 
+import { deleteTask } from "./TaskService"; 
 
-const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
+const TaskCard = ({ tasks, supabaseUrl, supabaseKey, droppableId }) => {
   const [selectedTask, setSelectedTask] = useState(null);
 
   const openCardOverlay = (task) => {
@@ -20,8 +20,8 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
       const { success, error } = await deleteTask(taskId, supabaseUrl, supabaseKey);
 
       if (success) {
-        // Task deleted successfully
         console.log("Task deleted successfully.");
+        window.location.reload();
       } else {
         console.error("Error deleting task:", error);
       }
@@ -36,7 +36,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
         {tasks &&
           tasks.map((task, index) => (
             /*<AnimatePresence>*/
-              <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
+              <Draggable key={task.id} draggableId={`${droppableId}-${task.id}`} index={index}>
                 {(provided) => (
                   //<motion.li
                   <li
@@ -54,7 +54,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
                           
                         <p className="hidden md:block">{task.comment}</p>
                         <div className="flex justify-between mt-2 details-toolbar md:mt-4">
-                          <div className="relative flex justify-between hidden lg:block card-details text-slate-500">
+                          <div className="relative justify-between hidden lg:block card-details text-slate-500">
                             <button className={`cursor-pointer priority-label px-2 py-1 my-1 mr-2 text-xs text-white rounded full ${task.priority}`}>
                               Priority: {task.priority}
                             </button>
@@ -88,7 +88,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
             <h3 className="mb-2 text-3xl font-semibold">{selectedTask.taskTitle}</h3>
             <p>{selectedTask.comment}</p>
             <div className="flex justify-between mt-2 details-toolbar md:mt-4">
-              <div className="relative flex justify-between hidden lg:block card-details text-slate-500">
+              <div className="relative justify-between hidden lg:block card-details text-slate-500">
                 <button className={`cursor-default priority-label px-2 py-1 my-1 mr-2 text-xs text-white rounded full ${selectedTask.priority}`}>
                   Priority: {selectedTask.priority}
                 </button>

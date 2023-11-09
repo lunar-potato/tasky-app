@@ -10,7 +10,7 @@ const supabaseUrl = "https://vumfiwtseuqdsodbaghp.supabase.co";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const TaskContainer = ({ type }) => {
+const TaskContainer = ({ type, droppableId }) => {
   const [tasks, setTasks] = useState([]);
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 
@@ -49,11 +49,15 @@ const TaskContainer = ({ type }) => {
     const [reorderedTask] = updatedTasks.splice(result.source.index, 1);
     updatedTasks.splice(result.destination.index, 0, reorderedTask);
 
+    updatedTasks.forEach((task, index) => {
+      task.order = index;
+    });
+
     setTasks(updatedTasks);
 
-    const newOrder = updatedTasks.map((task, index) => ({
+    const newOrder = updatedTasks.map((task) => ({
       id: task.id,
-      order: index,
+      order: task.order,
     }));
 
     const { error } = await supabase
@@ -88,7 +92,7 @@ const TaskContainer = ({ type }) => {
       </div>
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId={type}>
+        <Droppable droppableId={droppableId}>
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
               <TaskCard tasks={tasks} />
@@ -118,14 +122,4 @@ const TaskContainer = ({ type }) => {
   );
 };
 
-const Container = () => {
-  return (
-    <div className="grid grid-cols-3 gap-0 md:gap-4">
-      <TaskContainer type="To Do" />
-      <TaskContainer type="Doing" />
-      <TaskContainer type="Done" />
-    </div>
-  );
-};
-
-export default Container;
+export default TaskContainer;
