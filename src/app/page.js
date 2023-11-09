@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       <Header />
       <TitleBar />
-      <div className="container mx-auto md:px-12">
+      <div className="mx-auto lg:container md:px-2 lg:px-4 xl:px-12">
         <Container />
         <Footer />
       </div>
