@@ -1,6 +1,6 @@
 # Tasky App: Your Ultimate Task Manager App
 
-Tasky is a powerful web application designed specifically for web developers who demand top-notch productivity and project management using a Kanban board. Say goodbye to scattered to-do lists, sticky notes, and the hassle of keeping track of your web development projects. Tasky brings order and efficiency to your workflow, making it easier than ever to stay organized and focused.
+Tasky is a powerful web application designed specifically for web developers who demand top-notch productivity and project management using a Kanban board. Say goodbye to scattered to-do lists, sticky notes, and the hassle of keeping track of your web development projects. Tasky brings order and efficiency to your workflow, making it easier than ever to stay organised and focused.
 
 ## Table of Contents
 
@@ -16,29 +16,24 @@ Tasky is a powerful web application designed specifically for web developers who
 
 ## Features
 1. **Intuitive Task Management**
-   - Create, edit, and organize your tasks with ease.
-   - Categorize tasks by priority, due date, and type.
-   - Quickly filter and sort tasks to find what you need.
-2. **Real-Time Collaboration**
-   - Collaborate with team members seamlessly.
-   - Share projects and tasks in real-time.
-   - Stay up-to-date on project progress.
-3. **Task Details**
+   - Create, edit, and organise your tasks with ease.
+   - Categorise tasks by priority, due date, and type.
+2. **Task Details**
    - Keep all project details in one place.
    - Add descriptions, due dates, and priority to tasks.
    - Never lose track of important project information.
-4. **Deadline Reminders**
+3. **Deadline Reminders**
    - Set due dates and receive timely reminders.
    - Never miss a deadline or milestone.
    - Stay on top of your project schedules.
-5. **Kanban Board**
-   - Visualize your workflow with a Kanban-style board.
+4. **Kanban Board**
+   - Visualise your workflow with a Kanban-style board.
    - Move tasks across columns for a clear overview.
    - Streamline project management.
-6. **Dark Mode**
-   - Tasky offers a visually pleasing dark mode.
+5. **Dark Mode**
+   - Tasky offers a visually pleasing dark mode adorn with colours.
    - Reduce eye strain during those late-night coding sessions.
-   - Customize the app to your preference.
+   - Customise the app to your preference.
 
 ### Prerequisites
 
@@ -54,7 +49,7 @@ Getting started with Tasky App is simple and intuitive. Follow these steps:
    - When you open the app, you'll see the Tasky App interface with the Tasky App logo at the top of the page.
 
 3. **Kanban Board**:
-   - The main view is the Kanban board, where your tasks are organized into three columns: "To Do," "Doing," and "Done."
+   - The main view is the Kanban board, where your tasks are organised into three columns: "To Do," "Doing," and "Done."
 
 4. **Add a Task**:
    - To add a new task, click the "+ Add card" button located at the bottom of the cards.
@@ -64,7 +59,7 @@ Getting started with Tasky App is simple and intuitive. Follow these steps:
      - **Task Title**: Provide a brief title for your task.
      - **Task Description**: Add any additional information or notes about your task.
      - **Due Date**: Select a due date for the task.
-     - **Task Type**: Categorize your task as needed.
+     - **Task Type**: Categorise your task as needed.
      - **Priority Level**: Set the task's priority level.
 
 6. **Add the Task**:
@@ -81,7 +76,7 @@ Getting started with Tasky App is simple and intuitive. Follow these steps:
 
 ### User Story
 
-As a web developer, I want a user-friendly task management application to help me stay organized and focused on my projects.
+As a web developer, I want a user-friendly task management application to help me stay organised and focused on my projects.
 
 ## Installation
 
@@ -150,7 +145,7 @@ To get Tasky App working, we have used different technologies and dependencies b
 Tasky App is hosted and deployed on Vercel, simplifying the deployment process and providing hosting for web applications. It ensures worldwide accessibility with minimal downtime.
 
 - **Deployment**: [Tasky App on Vercel](#vercel-deployment-link)
-- **GitHub Repository**: [Tasky App on GitHub](#github-repo-link)
+- **GitHub Repository**: [Tasky App on GitHub](https://github.com/lunar-potato/tasky-app)
 
 ## Authors
 
