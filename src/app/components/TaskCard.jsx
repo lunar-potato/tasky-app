@@ -20,7 +20,6 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
       const { success, error } = await deleteTask(taskId, supabaseUrl, supabaseKey);
 
       if (success) {
-        // Task deleted successfully
         console.log("Task deleted successfully.");
       } else {
         console.error("Error deleting task:", error);

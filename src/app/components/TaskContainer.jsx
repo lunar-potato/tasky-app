@@ -49,12 +49,11 @@ const TaskContainer = ({ type }) => {
     const [reorderedTask] = updatedTasks.splice(result.source.index, 1);
     updatedTasks.splice(result.destination.index, 0, reorderedTask);
 
-    setTasks(updatedTasks);
+    updatedTasks.forEach((task, index) => {
+      task.order = index;
+    })
 
-    const newOrder = updatedTasks.map((task, index) => ({
-      id: task.id,
-      order: index,
-    }));
+    setTasks(updatedTasks);
 
     const { error } = await supabase
       .from("tasks")
