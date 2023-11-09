@@ -13,9 +13,9 @@ const TaskContainer = ({ type, tasks }) => {
     <div className="p-2 border-white border-x-2 md:border-x-0 xl:m-4 md:shadow-lg xl:p-4 md:rounded bg-slate-500">
       <div className="flex items-center justify-between mb-2">
         <h4 className="text-xl font-bold text-white md:text-3xl">{type}</h4>
-        <button className="text-white hover:text-teal-200">
+        {/*<button className="text-white hover:text-teal-200">
           <MoreVertical className="w-9 h-9" />
-        </button>
+        </button>*/}
       </div>
 
         <Droppable droppableId={type}>
