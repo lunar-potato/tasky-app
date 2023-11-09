@@ -1,7 +1,7 @@
 "use client";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import TaskContainer from "./components/TaskContainer";
+import Container from "./components/Container";
 import TitleBar from "./components/TitleBar";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       <TitleBar />
       <div className="container mx-auto md:px-12">
-        <TaskContainer />
+        <Container />
         <Footer />
       </div>
     </main>
