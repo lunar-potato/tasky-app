@@ -55,18 +55,6 @@ body {
 }
 
 /*priority colour*/
-.card.High {
-  background-color: #fef2f2;
-}
-
-.card.Medium {
-  background-color: #fff7ed;
-}
-
-.card.Low {
-  background-color: #fffbeb;
-}
-
 .priority-label.High {
   background-color: #ef4444;
 }

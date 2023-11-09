@@ -3,11 +3,12 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <nav className="justify-center p-8 text-center bg-slate-500">
-      <Image src="/tasky-200-w-t.png" width={150} height={131} alt="Tasky logo" />
-    </nav>
+    <header className="p-8 bg-slate-500">
+      <div className="container flex justify-center mx-auto px-14">
+        <Image src="/tasky-200-w-t.png" width={150} height={131} alt="Tasky logo" />
+      </div>
+    </header>
   );
 };
-
 
 export default Header;
