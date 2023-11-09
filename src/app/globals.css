@@ -27,6 +27,11 @@ body {
 }
 
 /* Overlay Style */
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
 .overlay {
   display: none;
   top: 0;
@@ -44,8 +49,32 @@ body {
   position: relative;
 }
 
-
 /* Show Overlay */
 .overlay.active {
   display: flex;
+}
+
+/*priority colour*/
+.card.High {
+  background-color: #fef2f2;
+}
+
+.card.Medium {
+  background-color: #fff7ed;
+}
+
+.card.Low {
+  background-color: #fffbeb;
+}
+
+.priority-label.High {
+  background-color: #ef4444;
+}
+
+.priority-label.Medium {
+  background-color: #f59e0b;
+}
+
+.priority-label.Low {
+  background-color: #84cc16;
 }
