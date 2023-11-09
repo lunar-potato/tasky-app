@@ -18,24 +18,28 @@ Tasky is a powerful web application designed specifically for web developers who
 
 ## Features
 1. **Intuitive Task Management**
-   - Create, edit, and organise your tasks with ease.
+   - Create<!--, edit,--> and organise your tasks with ease.
    - Categorise tasks by priority, due date, and type.
 2. **Task Details**
    - Keep all project details in one place.
    - Add descriptions, due dates, and priority to tasks.
    - Never lose track of important project information.
-3. **Deadline Reminders**
+<!--3. **Deadline Reminders**
    - Set due dates and receive timely reminders.
    - Never miss a deadline or milestone.
-   - Stay on top of your project schedules.
-4. **Kanban Board**
+   - Stay on top of your project schedules.-->
+3. **Kanban Board**
    - Visualise your workflow with a Kanban-style board.
    - Move tasks across columns for a clear overview.
    - Streamline project management.
-5. **Dark Mode**
+<!--4. **Dark Mode**
    - Tasky offers a visually pleasing dark mode adorn with colours.
    - Reduce eye strain during those late-night coding sessions.
-   - Customise the app to your preference.
+   - Customise the app to your preference.-->
+4. **Mobile Responsive**
+   - Clean, minimal layout for mobile devives.
+   - Keep your app in your pocket.
+   - Keep on top of tasks on the move.   
 
 ### Prerequisites
 
@@ -171,4 +175,4 @@ The following image shows the web application's functionality:
 * Adding Task and Submitting fields
 ! ![adding task image](images/add.png)
 * Mobile Responsiveness
-![Mobile app responsiveness](images/Home.png)
+![Mobile app responsiveness](images/mobile-Home.png)
