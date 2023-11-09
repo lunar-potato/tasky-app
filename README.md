@@ -2,6 +2,8 @@
 
 Tasky is a powerful web application designed specifically for web developers who demand top-notch productivity and project management using a Kanban board. Say goodbye to scattered to-do lists, sticky notes, and the hassle of keeping track of your web development projects. Tasky brings order and efficiency to your workflow, making it easier than ever to stay organised and focused.
 
+![Tasky image](images/tasky.png)
+
 ## Table of Contents
 
 - [Features](#features)
@@ -144,7 +146,7 @@ To get Tasky App working, we have used different technologies and dependencies b
 
 Tasky App is hosted and deployed on Vercel, simplifying the deployment process and providing hosting for web applications. It ensures worldwide accessibility with minimal downtime.
 
-- **Deployment**: [Tasky App on Vercel](#vercel-deployment-link)
+- **Deployment**: [Tasky App on Vercel](https://tasky-app-gray.vercel.app/)
 - **GitHub Repository**: [Tasky App on GitHub](https://github.com/lunar-potato/tasky-app)
 
 ## Authors
@@ -162,3 +164,11 @@ This project is licensed under the MIT License.
 
 ## A Quick View of the App
 
+The following image shows the web application's functionality:
+
+* Home Page
+![opening the code in the browser resulting analysis image](images/Home.png)
+* Adding Task and Submitting fields
+! ![adding task image](images/add.png)
+* Mobile Responsiveness
+![Mobile app responsiveness](images/Home.png)
