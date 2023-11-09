@@ -10,7 +10,7 @@ const TitleBar = ({ projectName }) => {
           {pageTitle[0]}
         </h1>
         <div className="py-3 xl:mr-2 task-filter" >
-          Task Filter
+          
         </div>
       </div>
     </div>
