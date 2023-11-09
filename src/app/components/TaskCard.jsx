@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { motion, AnimatePresence } from "framer-motion";
 import { X, Trash2, Maximize } from "lucide-react"; 
 import { deleteTask } from "./TaskService"; 
 import dayjs from "dayjs";
@@ -44,7 +43,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey, droppableId }) => {
         {tasks &&
           tasks.map((task, index) => (
             /*<AnimatePresence>*/
-              <Draggable key={task.id} draggableId={`${droppableId}-${task.id}`} index={index}>
+              <Draggable key={task.id} draggableId={`${task.id}`} index={index}>
                 {(provided) => (
                   //<motion.li
                   <li
