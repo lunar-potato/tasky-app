@@ -61,6 +61,7 @@ const AddTask = ({ onClose }) => {
         taskType: "To Do", // Resets it to "To Do"
       });
       setIsModalOpen(false);
+      window.location.reload();
     }
   };
 

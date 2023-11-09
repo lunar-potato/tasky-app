@@ -21,6 +21,7 @@ const TaskCard = ({ tasks, supabaseUrl, supabaseKey }) => {
 
       if (success) {
         console.log("Task deleted successfully.");
+        window.location.reload();
       } else {
         console.error("Error deleting task:", error);
       }
