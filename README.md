@@ -170,9 +170,11 @@ This project is licensed under the MIT License.
 
 The following image shows the web application's functionality:
 
-* Home Page
+**Home Page**:\
 ![opening the code in the browser resulting analysis image](images/Home.png)
-* Adding Task and Submitting fields
-! ![adding task image](images/add.png)
-* Mobile Responsiveness
-![Mobile app responsiveness](images/mobile-Home.png)
+
+**Adding Task and Submitting fields**:\
+![adding task image](images/add.png)
+
+**Mobile Responsiveness**:\
+![Mobile app responsiveness](images/mobile-home.png)
